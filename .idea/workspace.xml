@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75daddbd-ce45-4bab-ac15-641ba6bf4440" name="Changes" comment="">
+    <list default="true" id="75daddbd-ce45-4bab-ac15-641ba6bf4440" name="Changes" comment="grille + multi thread déplacement des pièces">
       <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Grille.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Piece.java" afterDir="false" />
@@ -66,11 +66,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1685450969297</updated>
-      <workItem from="1685451485223" duration="2521000" />
+      <workItem from="1685451485223" duration="2556000" />
     </task>
+    <task id="LOCAL-00001" summary="grille + multi thread déplacement des pièces">
+      <created>1685457681807</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1685457681807</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="grille + multi thread déplacement des pièces" />
+    <option name="LAST_COMMIT_MESSAGE" value="grille + multi thread déplacement des pièces" />
   </component>
 </project>
