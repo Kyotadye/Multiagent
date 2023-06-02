@@ -1,7 +1,9 @@
 package org.example;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static org.example.Grille.THREAD_COUNT;
+import static org.example.Grille.ITERATION_COUNTER;
 
 public class Piece implements Runnable{
 
@@ -19,6 +21,7 @@ public class Piece implements Runnable{
     private int indiceColor;
 
     private Grille grille;
+
 
     public Piece(int x, int y, String symbole, Grille grille, int indiceColor) {
         this.x = x;
@@ -77,7 +80,7 @@ public class Piece implements Runnable{
         while (iterations < maxIterations) {
             List<Node> path;
             path = Astar.findPath(grille, this.x, this.y, this.positionFinale_x, this.positionFinale_y);
-
+            synchronized (grille.getLock()) { // Utilisation de l'objet de verrouillage de la grille
 
                 if (path != null && path.size() > 1) {
                     // La première étape du chemin représente le nœud suivant vers lequel la pièce doit se déplacer
@@ -91,24 +94,27 @@ public class Piece implements Runnable{
                         System.out.println(this.symbole + " se déplace en " + this.x + " " + this.y);
                     }
                 }
-            //grille.afficherGrille();
-
-            synchronized (grille.getLock()) { // Utilisation de l'objet de verrouillage de la grille
-                if (this.x == this.positionFinale_x && this.y == this.positionFinale_y) {
-                    System.out.println(this.symbole + " est arrivé à destination");
-                    isArrived = true;
-                    break;
-                }
-
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                    grille.afficherGrille();
             }
 
+
+            //grille.afficherGrille();
+            if (this.x == this.positionFinale_x && this.y == this.positionFinale_y) {
+                System.out.println(this.symbole + " est arrivé à destination");
+                isArrived = true;
+                THREAD_COUNT--;
+                if(THREAD_COUNT != 0) ITERATION_COUNTER++;
+                if(THREAD_COUNT >= 0) ITERATION_COUNTER = -1;grille.afficherGrille();
+                break;
+            }
+            ITERATION_COUNTER++;
+            grille.afficherGrille();
             iterations++;
+        try {
+            Thread.sleep(1000);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         }
     }
 

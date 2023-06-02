@@ -2,8 +2,6 @@ package org.example;
 
 import javax.swing.*;
 import java.awt.*;
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 
@@ -15,6 +13,9 @@ public class Grille {
     private JLabel[][] labels; // Tableau de labels pour représenter la grille
 
     private final Object lock;
+
+    public static int THREAD_COUNT = 4; // Nombre de threads
+    public static int ITERATION_COUNTER = 0; // Compteur d'itérations
 
     public Grille(int taille) {
         this.taille = taille;
@@ -55,44 +56,53 @@ public class Grille {
 
 
     public void afficherGrille() {
-        ArrayList<Color> colors = new ArrayList<>();
-        colors.add(Color.red);
-        colors.add(Color.blue);
-        colors.add(Color.green);
-        colors.add(Color.orange);
-        colors.add(Color.pink);
-        colors.add(Color.cyan);
-        colors.add(Color.magenta);
-        colors.add(Color.gray);
-        colors.add(Color.darkGray);
-        colors.add(Color.lightGray);
-        SwingUtilities.invokeLater(() -> {
-            if (frame.isVisible()) {
-                // Mettre à jour les labels existants
-                for (int i = 0; i < this.taille; i++) {
-                    for (int j = 0; j < this.taille; j++) {
-                        Piece piece = this.estVide(i, j);
-                        if (piece == null) {
-                            labels[i][j].setText(".");
-                            labels[i][j].setForeground(Color.black);
-                        } else {
-                            if(!piece.getIsArrived()){
-                                labels[i][j].setForeground(colors.get(piece.getIndiceColor() % colors.size()));
-                            }else{
+        int result = 0;
+        if(THREAD_COUNT!=0){
+            result = ITERATION_COUNTER %THREAD_COUNT;
+        }
+        if(result ==0 || THREAD_COUNT == 0 || ITERATION_COUNTER == -1) {
+            ITERATION_COUNTER = 0;
+            ArrayList<Color> colors = new ArrayList<>();
+            System.out.println("afficherGrille");
+            colors.add(Color.red);
+            colors.add(Color.blue);
+            colors.add(Color.green);
+            colors.add(Color.orange);
+            colors.add(Color.pink);
+            colors.add(Color.cyan);
+            colors.add(Color.magenta);
+            colors.add(Color.gray);
+            colors.add(Color.darkGray);
+            colors.add(Color.lightGray);
+
+            SwingUtilities.invokeLater(() -> {
+                if (frame.isVisible()) {
+                    // Mettre à jour les labels existants
+                    for (int i = 0; i < this.taille; i++) {
+                        for (int j = 0; j < this.taille; j++) {
+                            Piece piece = this.estVide(i, j);
+                            if (piece == null) {
+                                labels[i][j].setText(".");
                                 labels[i][j].setForeground(Color.black);
+                            } else {
+                                if (!piece.getIsArrived()) {
+                                    labels[i][j].setForeground(colors.get(piece.getIndiceColor() % colors.size()));
+                                } else {
+                                    labels[i][j].setForeground(Color.black);
+                                }
+                                labels[piece.getPositionFinale_x()][piece.getPositionFinale_y()].setBackground(colors.get(piece.getIndiceColor() % colors.size()));
+                                labels[piece.getPositionFinale_x()][piece.getPositionFinale_y()].setOpaque(true);
+                                labels[i][j].setText(piece.getSymbole());
                             }
-                            labels[piece.getPositionFinale_x()][piece.getPositionFinale_y()].setBackground(colors.get(piece.getIndiceColor()%colors.size()));
-                            labels[piece.getPositionFinale_x()][piece.getPositionFinale_y()].setOpaque(true);
-                            labels[i][j].setText(piece.getSymbole());
                         }
                     }
+                } else {
+                    // Créer et afficher l'interface Swing
+                    initSwingComponents();
+                    frame.setVisible(true);
                 }
-            } else {
-                // Créer et afficher l'interface Swing
-                initSwingComponents();
-                frame.setVisible(true);
-            }
-        });
+            });
+        }
     }
 
     private void initSwingComponents() {
