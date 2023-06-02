@@ -68,22 +68,22 @@ public class Grille {
         colors.add(Color.lightGray);
         SwingUtilities.invokeLater(() -> {
             if (frame.isVisible()) {
-                int indice = 0;
                 // Mettre à jour les labels existants
                 for (int i = 0; i < this.taille; i++) {
                     for (int j = 0; j < this.taille; j++) {
                         Piece piece = this.estVide(i, j);
                         if (piece == null) {
                             labels[i][j].setText(".");
-                        } else {
-                            labels[i][j].setText(piece.getSymbole());
                             labels[i][j].setForeground(Color.black);
+                        } else {
                             if(!piece.getIsArrived()){
                                 labels[i][j].setForeground(colors.get(piece.getIndiceColor() % colors.size()));
+                            }else{
+                                labels[i][j].setForeground(Color.black);
                             }
                             labels[piece.getPositionFinale_x()][piece.getPositionFinale_y()].setBackground(colors.get(piece.getIndiceColor()%colors.size()));
                             labels[piece.getPositionFinale_x()][piece.getPositionFinale_y()].setOpaque(true);
-                            indice = (indice + 1) % colors.size();
+                            labels[i][j].setText(piece.getSymbole());
                         }
                     }
                 }
