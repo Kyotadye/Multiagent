@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Piece implements Runnable{
 
@@ -57,33 +58,45 @@ public class Piece implements Runnable{
 
     @Override
     public void run() {
-        while (this.x != this.positionFinale_x || this.y != this.positionFinale_y) {
-            if (this.x < this.positionFinale_x) {
-                if(grille.estVide(this.x+1, this.y) == null){
-                    this.x++;
-                }
-            } else if (this.x > this.positionFinale_x) {
-                if(grille.estVide(this.x-1, this.y) == null){
-                    this.x--;
+        int maxIterations = 100;  // Limite le nombre d'itérations
+        int iterations = 0;
+
+        while (iterations < maxIterations) {
+            List<Node> path;
+            path = Astar.findPath(grille, this.x, this.y, this.positionFinale_x, this.positionFinale_y);
+
+
+            if (path != null && path.size() > 1) {
+                // La première étape du chemin représente le nœud suivant vers lequel la pièce doit se déplacer
+                Node nextNode = path.get(1);
+                int nextX = nextNode.x;
+                int nextY = nextNode.y;
+
+                if (grille.estVide(nextX, nextY) == null) {
+                    this.x = nextX;
+                    this.y = nextY;
+                    System.out.println(this.symbole + " se déplace en " + this.x + " " + this.y);
                 }
             }
-            if (this.y < this.positionFinale_y) {
-                if(grille.estVide(this.x, this.y+1) == null){
-                    this.y++;
-                }
-            } else if (this.y > this.positionFinale_y) {
-                if(grille.estVide(this.x, this.y-1) == null){
-                    this.y--;
-                }
+            //grille.afficherGrille();
+
+
+            if (this.x == this.positionFinale_x && this.y == this.positionFinale_y) {
+                System.out.println(this.symbole + " est arrivé à destination");
+                break;
             }
-            System.out.println(this.symbole + " se déplace en " + this.x + " " + this.y);
-            grille.afficherGrille();
+
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            synchronized (grille.getLock()) { // Utilisation de l'objet de verrouillage de la grille
+                grille.afficherGrille();
+            }
+
+            iterations++;
         }
-        System.out.println(this.symbole + " est arrivé à destination");
     }
+
 }

@@ -6,13 +6,21 @@ public class Grille {
     private int taille;
     private ArrayList<Piece> pieces;
 
+    private final Object lock;
+
+
     public Grille(int taille) {
         this.taille = taille;
         this.pieces = new ArrayList<Piece>();
+        this.lock = new Object();
     }
 
     public int getTaille() {
         return this.taille;
+    }
+
+    public Object getLock() {
+        return this.lock;
     }
 
     public ArrayList<Piece> getPieces() {
