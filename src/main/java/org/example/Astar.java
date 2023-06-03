@@ -15,7 +15,6 @@ public class Astar {
             return null;
         }
 
-        Piece startPiece = grille.estVide(startX, startY);
         Piece endPiece = grille.estVide(endX, endY);
 
         // Vérification si le point de départ ou d'arrivée est occupé par une pièce

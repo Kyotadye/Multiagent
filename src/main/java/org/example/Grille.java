@@ -17,12 +17,13 @@ public class Grille {
     public static int THREAD_COUNT = 4; // Nombre de threads
     public static int ITERATION_COUNTER = 0; // Compteur d'itérations
 
-    public Grille(int taille) {
+    public Grille(int taille,int threadCount) {
         this.taille = taille;
         this.pieces = new ArrayList<Piece>();
         this.lock = new Object();
 
         SwingUtilities.invokeLater(this::initSwingComponents);
+        THREAD_COUNT = threadCount;
     }
 
     public int getTaille() {

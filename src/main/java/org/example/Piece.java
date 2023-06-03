@@ -94,6 +94,33 @@ public class Piece implements Runnable{
                         System.out.println(this.symbole + " se déplace en " + this.x + " " + this.y);
                     }
                 }
+                else {
+                    int nextY = this.y++;
+                    System.out.println(this.y);
+                    if (grille.estVide(this.x, nextY) == null) {
+                        this.y = nextY;
+                        System.out.println(this.symbole + " se déplace en " + this.x + " " + this.y);
+                    }else {
+                        int nextX = this.x++;
+                        if (grille.estVide(nextX, this.y) == null) {
+                            this.x = nextX;
+                            System.out.println(this.symbole + " se déplace en " + this.x + " " + this.y);
+                        }else{
+                        nextY = this.y--;
+                        if (grille.estVide(this.x, nextY) == null) {
+                            this.y = nextY;
+                            System.out.println(this.symbole + " se déplace en " + this.x + " " + this.y);
+                        }else {
+                            nextX = this.x--;
+                            if (grille.estVide(nextX, this.y) == null) {
+                                this.x = nextX;
+                                System.out.println(this.symbole + " se déplace en " + this.x + " " + this.y);
+                            }
+                        }
+                    }
+
+                    }
+                }
             }
 
 
