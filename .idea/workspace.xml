@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75daddbd-ce45-4bab-ac15-641ba6bf4440" name="Changes" comment="Oh c'est une princesse carrément">
+    <list default="true" id="75daddbd-ce45-4bab-ac15-641ba6bf4440" name="Changes" comment="Leger fix du bug des deux pos finales + c'est quoi ce poulet elle a le boule qui chamboule">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Astar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Astar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Grille.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Grille.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Piece.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +85,9 @@
       <updated>1685450969297</updated>
       <workItem from="1685451485223" duration="2556000" />
       <workItem from="1685692088428" duration="10901000" />
-      <workItem from="1685805344359" duration="304000" />
+      <workItem from="1685805344359" duration="1010000" />
+      <workItem from="1685950770945" duration="39000" />
+      <workItem from="1686031415726" duration="2015000" />
     </task>
     <task id="LOCAL-00001" summary="grille + multi thread déplacement des pièces">
       <created>1685457681807</created>
@@ -125,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685699075797</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Leger fix du bug des deux pos finales + c'est quoi ce poulet elle a le boule qui chamboule">
+      <created>1685805757183</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1685805757184</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,17 +143,7 @@
     <MESSAGE value="Swing de fou malade" />
     <MESSAGE value="tant pis" />
     <MESSAGE value="Oh c'est une princesse carrément" />
-    <option name="LAST_COMMIT_MESSAGE" value="Oh c'est une princesse carrément" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/Piece.java</url>
-          <line>97</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Leger fix du bug des deux pos finales + c'est quoi ce poulet elle a le boule qui chamboule" />
+    <option name="LAST_COMMIT_MESSAGE" value="Leger fix du bug des deux pos finales + c'est quoi ce poulet elle a le boule qui chamboule" />
   </component>
 </project>
