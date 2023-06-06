@@ -75,6 +75,7 @@ public class Grille {
             colors.add(Color.gray);
             colors.add(Color.darkGray);
             colors.add(Color.lightGray);
+            colors.add(Color.yellow);
 
             SwingUtilities.invokeLater(() -> {
                 if (frame.isVisible()) {

@@ -16,7 +16,10 @@ public class Main {
                 new Piece(2, 2, "E", grille, 4),
                 new Piece(3, 4, "F", grille, 5),
                 new Piece(1, 3, "G", grille, 6),
-                new Piece(4, 1, "G", grille, 7)
+                new Piece(4, 1, "H", grille, 7),
+                new Piece(4, 4, "I", grille, 8),
+                new Piece(1, 2, "J", grille, 9),
+                new Piece(1, 4, "K", grille, 10)
 
         );
         THREAD_COUNT = pieces.size();
@@ -29,6 +32,9 @@ public class Main {
         pieces.get(5).setPositionFinale(1, 0);
         pieces.get(6).setPositionFinale(3, 3);
         pieces.get(7).setPositionFinale(3, 0);
+        pieces.get(8).setPositionFinale(0, 2);
+        pieces.get(9).setPositionFinale(3, 4);
+        pieces.get(10).setPositionFinale(4, 3);
 
         for (Piece piece : pieces) {
             grille.addPiece(piece);

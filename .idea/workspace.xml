@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75daddbd-ce45-4bab-ac15-641ba6bf4440" name="Changes" comment="Leger fix du bug des deux pos finales + c'est quoi ce poulet elle a le boule qui chamboule">
+    <list default="true" id="75daddbd-ce45-4bab-ac15-641ba6bf4440" name="Changes" comment="modif main">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Grille.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Grille.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,7 +88,7 @@
       <workItem from="1685692088428" duration="10901000" />
       <workItem from="1685805344359" duration="1010000" />
       <workItem from="1685950770945" duration="39000" />
-      <workItem from="1686031415726" duration="2015000" />
+      <workItem from="1686031415726" duration="3804000" />
     </task>
     <task id="LOCAL-00001" summary="grille + multi thread déplacement des pièces">
       <created>1685457681807</created>
@@ -131,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685805757184</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="modif main">
+      <created>1686033511992</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1686033511992</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,6 +152,7 @@
     <MESSAGE value="tant pis" />
     <MESSAGE value="Oh c'est une princesse carrément" />
     <MESSAGE value="Leger fix du bug des deux pos finales + c'est quoi ce poulet elle a le boule qui chamboule" />
-    <option name="LAST_COMMIT_MESSAGE" value="Leger fix du bug des deux pos finales + c'est quoi ce poulet elle a le boule qui chamboule" />
+    <MESSAGE value="modif main" />
+    <option name="LAST_COMMIT_MESSAGE" value="modif main" />
   </component>
 </project>
