@@ -3,17 +3,22 @@ package org.example;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class Grille {
     private int taille;
     private ArrayList<Piece> pieces;
 
+    public int nbArrived = 0;
+
+    public HashMap<Integer,String> ordres;
     private JFrame frame; // Fenêtre Swing
     private JLabel[][] labels; // Tableau de labels pour représenter la grille
 
     private final Object lock;
 
+    public int max_thread = 0;
     public static int THREAD_COUNT = 4; // Nombre de threads
     public static int ITERATION_COUNTER = 0; // Compteur d'itérations
 
@@ -21,6 +26,7 @@ public class Grille {
         this.taille = taille;
         this.pieces = new ArrayList<Piece>();
         this.lock = new Object();
+        this.ordres = new HashMap<Integer,String>();
 
         SwingUtilities.invokeLater(this::initSwingComponents);
         THREAD_COUNT = threadCount;
@@ -64,7 +70,7 @@ public class Grille {
         if(result ==0 || THREAD_COUNT == 0 || ITERATION_COUNTER == -1) {
             ITERATION_COUNTER = 0;
             ArrayList<Color> colors = new ArrayList<>();
-            System.out.println("afficherGrille");
+            //System.out.println("afficherGrille");
             colors.add(Color.red);
             colors.add(Color.blue);
             colors.add(Color.green);
@@ -88,11 +94,11 @@ public class Grille {
                                 labels[i][j].setForeground(Color.black);
                             } else {
                                 if (!piece.getIsArrived()) {
-                                    labels[i][j].setForeground(colors.get(piece.getIndiceColor() % colors.size()));
+                                    labels[i][j].setForeground(colors.get(piece.getIndice() % colors.size()));
                                 } else {
                                     labels[i][j].setForeground(Color.black);
                                 }
-                                labels[piece.getPositionFinale_x()][piece.getPositionFinale_y()].setBackground(colors.get(piece.getIndiceColor() % colors.size()));
+                                labels[piece.getPositionFinale_x()][piece.getPositionFinale_y()].setBackground(colors.get(piece.getIndice() % colors.size()));
                                 labels[piece.getPositionFinale_x()][piece.getPositionFinale_y()].setOpaque(true);
                                 labels[i][j].setText(piece.getSymbole());
                             }

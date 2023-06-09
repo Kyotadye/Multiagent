@@ -15,12 +15,12 @@ public class Astar {
             return null;
         }
 
-        Piece endPiece = grille.estVide(endX, endY);
+        /*Piece endPiece = grille.estVide(endX, endY);
 
         // Vérification si le point de départ ou d'arrivée est occupé par une pièce
         if (endPiece != null) {
             return null;
-        }
+        }*/
 
         Node startNode = new Node(startX, startY);
         Node endNode = new Node(endX, endY);
@@ -60,10 +60,10 @@ public class Astar {
                 }
 
                 // Vérification si la nouvelle position est occupée par une pièce
-                Piece piece = grille.estVide(newX, newY);
+                /*Piece piece = grille.estVide(newX, newY);
                 if (piece != null) {
                     continue;
-                }
+                }*/
 
                 Node neighbor = new Node(newX, newY);
                 neighbor.g = currentNode.g + 1;

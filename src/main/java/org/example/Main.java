@@ -7,7 +7,7 @@ import static org.example.Grille.THREAD_COUNT;
 
 public class Main {
     public static void main(String[] args) {
-        Grille grille = new Grille(5,5);
+        Grille grille = new Grille(5,3);
         List <Piece> pieces = List.of(
                 new Piece(0, 3, "A", grille, 0),
                 new Piece(3, 0, "B", grille, 1),
@@ -23,6 +23,7 @@ public class Main {
 
         );
         THREAD_COUNT = pieces.size();
+        grille.max_thread = THREAD_COUNT+1;
 
         pieces.get(0).setPositionFinale(0, 4);
         pieces.get(1).setPositionFinale(0, 0);
