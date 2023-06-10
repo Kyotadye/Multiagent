@@ -44,6 +44,15 @@ public class Piece implements Runnable{
         return this.isArrived;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Piece) {
+            Piece other = (Piece) obj;
+            return this.x == other.x && this.y == other.y;
+        }
+        return false;
+    }
+
     public int getY() {
         return this.y;
     }
@@ -79,127 +88,138 @@ public class Piece implements Runnable{
 
     @Override
     public void run() {
-        int maxIterations = 100;  // Limite le nombre d'itérations
+        int maxIterations = 10000;  // Limite le nombre d'itérations
         int iterations = 0;
 
         while (iterations < maxIterations) {
             List<Node> path;
 
             // d'abord il va check la hashmap pour voir s'il a un ordre à son nom
-            if(grille.ordres.get(this.indice) != null){
+            if (grille.ordres.get(this.indice) != null) {
                 int nextX = this.x;
                 int nextY = this.y;
                 int currentOrdre = -1;
+                int iterationsordre = 0;
                 Random r = new Random();
-                int random = r.nextInt(4);
-                if (grille.estVide(nextX+1,nextY)==null && random == 0 && nextX+1 < grille.getTaille()){
-                    nextX = nextX+1;
-                    currentOrdre = 0;
-                }
-                if (grille.estVide(nextX-1,nextY)==null && random == 1 && nextX-1 >= 0){
-                    nextX = nextX-1;
-                    currentOrdre = 1;
-                }
-                if (grille.estVide(nextX,nextY+1)==null && random == 2 && nextY+1 < grille.getTaille()){
-                    nextY = nextY+1;
-                    currentOrdre = 2;
-                }
-                if (grille.estVide(nextX,nextY-1)==null && random == 3 && nextY-1 >= 0){
-                    nextY = nextY-1;
-                    currentOrdre = 3;
-                }
-                if(currentOrdre != this.ordrePrecedent) {
+
+                do {
+                    int random = r.nextInt(4);
+                    if (grille.estVide(nextX + 1, nextY) == null && random == 0 && nextX + 1 < grille.getTaille()) {
+                        nextX = nextX + 1;
+                        currentOrdre = 0;
+                    }
+                    if (grille.estVide(nextX - 1, nextY) == null && random == 1 && nextX - 1 >= 0) {
+                        nextX = nextX - 1;
+                        currentOrdre = 1;
+                    }
+                    if (grille.estVide(nextX, nextY + 1) == null && random == 2 && nextY + 1 < grille.getTaille()) {
+                        nextY = nextY + 1;
+                        currentOrdre = 2;
+                    }
+                    if (grille.estVide(nextX, nextY - 1) == null && random == 3 && nextY - 1 >= 0) {
+                        nextY = nextY - 1;
+                        currentOrdre = 3;
+                    }
+                    iterationsordre++;
+                } while(iterationsordre < 5);
+                if (currentOrdre != this.ordrePrecedent) {
                     Logger.log(this.symbole + " se déplace en " + nextX + " " + nextY + " suite à un ordre de " + grille.ordres.get(this.indice));
-                    this.x = nextX;
-                    this.y = nextY;
+                    if(grille.estVide(nextX,nextY)== null){
+                        this.x = nextX;
+                        this.y = nextY;
+                    }
                     grille.ordres.remove(this.indice);
                     path = null;
                     this.ordrePrecedent = currentOrdre;
-                    if (isArrived){
+                    if (isArrived) {
                         isArrived = false;
-                        grille.nbArrived--;
                     }
                 } else {
                     Logger.log(this.symbole + " refuse l'odre de " + grille.ordres.get(this.indice));
                     grille.ordres.remove(this.indice);
+                    grille.ordres.put(this.indice - 100, grille.ordres.get(this.indice));
                     this.ordrePrecedent = -1;
-                    path = Astar.findPath(grille, this.x, this.y, this.positionFinale_x, this.positionFinale_y);
+                    synchronized (grille.getLock()) {
+
+                        path = Astar.findPath(grille, this.x, this.y, this.positionFinale_x, this.positionFinale_y);
+                    }
                 }
             } else {
-                path = Astar.findPath(grille, this.x, this.y, this.positionFinale_x, this.positionFinale_y);
-            }
-            synchronized (grille.getLock()) { // Utilisation de l'objet de verrouillage de la grille
+                synchronized (grille.getLock()) {
 
+                    path = Astar.findPath(grille, this.x, this.y, this.positionFinale_x, this.positionFinale_y);
+                }
+            }
+
+            // Utilisation de l'objet de verrouillage de la grille
+            synchronized (grille.getLock()) {
+                int nextX = this.x;
+                int nextY = this.y;
                 if (path != null && path.size() > 1 && !isArrived) {
+                    grille.ordres.remove(this.indice - 100);
                     // La première étape du chemin représente le nœud suivant vers lequel la pièce doit se déplacer
                     Node nextNode = path.get(1);
-                    int nextX = nextNode.x;
-                    int nextY = nextNode.y;
+                    nextX = nextNode.x;
+                    nextY = nextNode.y;
                     Piece piece = grille.estVide(nextX, nextY);
-                    if (piece == null) {
-                        this.x = nextX;
-                        this.y = nextY;
-                        Logger.log(this.symbole + " se déplace en " + this.x + " " + this.y);
+                    if (piece == null ) {
+                        if(x != nextX && y != nextY) {
+                            this.x = nextX;
+                            this.y = nextY;
+                            Logger.log(this.symbole + " se déplace en " + this.x + " " + this.y);
+                        }
                     } else {
-                        if(lastOrdreDonné != piece.getIndice()) {
+                        if(lastOrdreDonné != piece.getIndice() && grille.ordres.get(piece.getIndice()-100)==null) {
                             grille.ordres.put(piece.getIndice(), this.symbole);
                             Logger.log(this.symbole + " a donné un ordre à " + piece.getSymbole());
                             lastOrdreDonné = piece.getIndice();
                         }else{
                             lastOrdreDonné = -1;
-                            nextY = this.y++;
-                            if (grille.estVide(this.x, nextY) == null && nextY < grille.getTaille()) {
-                                this.y = nextY;
-                                Logger.log(this.symbole + " se déplace en " + this.x + " " + this.y);
-                            }else {
-                                nextX = this.x++;
-                                if (grille.estVide(nextX, this.y) == null && nextX < grille.getTaille()) {
-                                    this.x = nextX;
-                                    Logger.log(this.symbole + " se déplace en " + this.x + " " + this.y);
-                                }else{
-                                    nextY = this.y--;
-                                    if (grille.estVide(this.x, nextY) == null && nextY >= 0) {
-                                        this.y = nextY;
-                                        Logger.log(this.symbole + " se déplace en " + this.x + " " + this.y);
-                                    }else {
-                                        nextX = this.x--;
-                                        if (grille.estVide(nextX, this.y) == null && nextX >= 0) {
-                                            this.x = nextX;
-                                            Logger.log(this.symbole + " se déplace en " + this.x + " " + this.y);
-                                        }
-                                    }
-                                }
 
+                            this.x = nextX;
+                            this.y = nextY;
+                            Random r = new Random();
+                            int random = r.nextInt(4);
+                            if (grille.estVide(nextX+1,nextY)==null && random == 0 && nextX+1 < grille.getTaille()){
+                                nextX = nextX+1;
+                            }
+                            if (grille.estVide(nextX-1,nextY)==null && random == 1 && nextX-1 >= 0){
+                                nextX = nextX-1;
+                            }
+                            if (grille.estVide(nextX,nextY+1)==null && random == 2 && nextY+1 < grille.getTaille()){
+                                nextY = nextY+1;
+                            }
+                            if (grille.estVide(nextX,nextY-1)==null && random == 3 && nextY-1 >= 0){
+                                nextY = nextY-1;
                             }
                         }
                     }
                 }
-
+                this.x = nextX;
+                this.y = nextY;
+                //Logger.log(this.symbole + " se déplace en " + this.x + " " + this.y);
 
             }
 
 
             //grille.afficherGrille();
             if (this.x == this.positionFinale_x && this.y == this.positionFinale_y) {
-                //Logger.log(this.symbole + " est arrivé à destination");
-                if(!isArrived) grille.nbArrived++;
                 isArrived = true;
                 THREAD_COUNT--;
                 if(THREAD_COUNT != 0) ITERATION_COUNTER++;
                 if(THREAD_COUNT >= 0) ITERATION_COUNTER = -1;grille.afficherGrille();
-                //Logger.log("Nombre de pièces arrivées : " + grille.nbArrived);
-
             }
             ITERATION_COUNTER++;
             grille.afficherGrille();
             iterations++;
-        try {
-            Thread.sleep(100);
+            try {
+                Thread.sleep(0);
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-        }
+        Logger.log(this.symbole + " a fini son travail");
     }
 
 }

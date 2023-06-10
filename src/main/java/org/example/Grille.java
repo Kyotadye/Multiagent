@@ -10,8 +10,6 @@ public class Grille {
     private int taille;
     private ArrayList<Piece> pieces;
 
-    public int nbArrived = 0;
-
     public HashMap<Integer,String> ordres;
     private JFrame frame; // Fenêtre Swing
     private JLabel[][] labels; // Tableau de labels pour représenter la grille

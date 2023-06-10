@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75daddbd-ce45-4bab-ac15-641ba6bf4440" name="Changes" comment="y en a des pieces">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Logger.java" afterDir="false" />
+    <list default="true" id="75daddbd-ce45-4bab-ac15-641ba6bf4440" name="Changes" comment="fix logger">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Astar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Astar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Grille.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Grille.java" afterDir="false" />
@@ -93,7 +92,9 @@
       <workItem from="1685950770945" duration="39000" />
       <workItem from="1686031415726" duration="4854000" />
       <workItem from="1686044825431" duration="20000" />
-      <workItem from="1686330124799" duration="5115000" />
+      <workItem from="1686330124799" duration="5347000" />
+      <workItem from="1686417048101" duration="44000" />
+      <workItem from="1686418421301" duration="4345000" />
     </task>
     <task id="LOCAL-00001" summary="grille + multi thread déplacement des pièces">
       <created>1685457681807</created>
@@ -151,7 +152,21 @@
       <option name="project" value="LOCAL" />
       <updated>1686035297608</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="ils discutent mais l'architecture est IGNOBLE">
+      <created>1686336021908</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1686336021908</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fix logger">
+      <created>1686336098923</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1686336098923</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,6 +181,8 @@
     <MESSAGE value="Leger fix du bug des deux pos finales + c'est quoi ce poulet elle a le boule qui chamboule" />
     <MESSAGE value="modif main" />
     <MESSAGE value="y en a des pieces" />
-    <option name="LAST_COMMIT_MESSAGE" value="y en a des pieces" />
+    <MESSAGE value="ils discutent mais l'architecture est IGNOBLE" />
+    <MESSAGE value="fix logger" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix logger" />
   </component>
 </project>
