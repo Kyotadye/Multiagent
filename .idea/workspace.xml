@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75daddbd-ce45-4bab-ac15-641ba6bf4440" name="Changes" comment="ca a l'air de fonctionner jusqu'à 20 pièces (après ça ne fonctionne plus donc bon signe)">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="75daddbd-ce45-4bab-ac15-641ba6bf4440" name="Changes" comment="fix synchronize">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Piece.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +95,7 @@
       <workItem from="1686753459163" duration="2906000" />
       <workItem from="1686816275361" duration="314000" />
       <workItem from="1686819544332" duration="1932000" />
-      <workItem from="1686835287364" duration="3366000" />
+      <workItem from="1686835287364" duration="4132000" />
     </task>
     <task id="LOCAL-00001" summary="grille + multi thread déplacement des pièces">
       <created>1685457681807</created>
@@ -176,7 +174,21 @@
       <option name="project" value="LOCAL" />
       <updated>1686424100320</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Code qui fonctionne de façon correcte">
+      <created>1686838730449</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1686838730449</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fix synchronize">
+      <created>1686838870526</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1686838870526</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,6 +206,8 @@
     <MESSAGE value="ils discutent mais l'architecture est IGNOBLE" />
     <MESSAGE value="fix logger" />
     <MESSAGE value="ca a l'air de fonctionner jusqu'à 20 pièces (après ça ne fonctionne plus donc bon signe)" />
-    <option name="LAST_COMMIT_MESSAGE" value="ca a l'air de fonctionner jusqu'à 20 pièces (après ça ne fonctionne plus donc bon signe)" />
+    <MESSAGE value="Code qui fonctionne de façon correcte" />
+    <MESSAGE value="fix synchronize" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix synchronize" />
   </component>
 </project>
