@@ -25,13 +25,13 @@ public class Main {
                 new Piece(3, 1, "M", grille, 12),
                 new Piece(4, 2, "N", grille, 13),
                 new Piece(2, 1, "O", grille, 14),
-                new Piece(4, 3, "P", grille, 15)
-                /*new Piece(1, 1, "Q", grille, 16),
-                new Piece(2, 3, "R", grille, 17)
+                new Piece(4, 3, "P", grille, 15),
+                new Piece(1, 1, "Q", grille, 16),
+                new Piece(2, 3, "R", grille, 17),
                 //18 pièces seuil de fonctionnement tester maximum à l'instant T+1
-                /*new Piece(0, 1, "S", grille, 18),
-                new Piece(3, 3, "T", grille, 19),
-                new Piece(4, 0, "U", grille, 20)
+                //new Piece(0, 1, "S", grille, 18),
+                new Piece(3, 3, "T", grille, 18),
+                new Piece(4, 0, "U", grille, 19)
                 /*new Piece(1, 0, "V", grille, 21),
                 new Piece(2, 4, "W", grille, 22),
                 new Piece(3, 2, "X", grille, 23)
@@ -64,12 +64,12 @@ public class Main {
         pieces.get(13).setPositionFinale(1, 3);
         pieces.get(14).setPositionFinale(2, 1);
         pieces.get(15).setPositionFinale(4, 4);
-        /*pieces.get(16).setPositionFinale(0, 1);
+        pieces.get(16).setPositionFinale(0, 1);
         pieces.get(17).setPositionFinale(3, 1);
         //18 pièces seuil de fonctionnement tester maximum à l'instant T+1
-        /*pieces.get(18).setPositionFinale(1, 1);
+        pieces.get(18).setPositionFinale(1, 1);
         pieces.get(19).setPositionFinale(2, 3);
-        pieces.get(20).setPositionFinale(4, 2);
+        /*pieces.get(20).setPositionFinale(4, 2);
         /*pieces.get(21).setPositionFinale(1, 4);
         pieces.get(22).setPositionFinale(2, 0);
         pieces.get(23).setPositionFinale(0, 3);

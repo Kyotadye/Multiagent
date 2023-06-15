@@ -141,6 +141,7 @@ public class Piece implements Runnable{
             } else {
                 path = Astar.findPath(grille, this.x, this.y, this.positionFinale_x, this.positionFinale_y);
             }
+            synchronized (grille.getLock()) {
                 // Utilisation de l'objet de verrouillage de la grille
                 if (path != null && path.size() > 1 && !isArrived && nextX == -1 && nextY == -1) {
                     grille.ordres.remove(this.indice - 100);
@@ -160,7 +161,7 @@ public class Piece implements Runnable{
                     }
                 }
 
-
+            }
             if(nextX == -1 || nextY == -1){
                 nextX = this.x;
                 nextY = this.y;
@@ -220,7 +221,7 @@ public class Piece implements Runnable{
             grille.afficherGrille();
             iterations++;
             try {
-                Thread.sleep(1000);
+                Thread.sleep(0);
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
